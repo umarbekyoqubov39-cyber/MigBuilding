@@ -18,10 +18,13 @@ export const hero = {
   title: ['Loyihadan kalit', 'topshirishgacha', 'bitta jamoa'] as const,
   subtitle: "Turar-joy, tijorat va sanoat binolarini loyihalash va qurish — bir joyda, bir shartnoma asosida.",
   /** Background video. Plays muted in a loop; the image below shows until it starts. */
-  video: '/videos/Hero-vidio.MP4',
+  video: '/videos/hero-1080.mp4',
+  /** 720p copy of the same video for phones: about half the download. */
+  videoSmall: '/videos/hero-720.mp4',
   /** Frame taken from the hero video at 0:03. */
   image: {
-    src: '/images/hero-poster.jpg',
+    src: '/images/hero-poster-960.webp',
+    srcSet: '/images/hero-poster-960.webp 960w, /images/hero-poster-1920.webp 1920w',
     alt: "MigBuild turar-joy majmuasining ko'p qavatli binolari",
     width: 1920,
     height: 1072,
@@ -33,7 +36,8 @@ export const featureVideo = {
   caption: "Buyurtma berishdan oldin bu videoni ko'ring!",
   video: {
     // Same file as the hero background; the browser reuses what it already downloaded.
-    src: '/videos/Hero-vidio.MP4',
+    src: hero.video,
+    srcSmall: hero.videoSmall,
     poster: hero.image,
     title: "MigBuild turar-joy majmuasi: taqdimot videosi",
   } satisfies VideoItem,
@@ -102,7 +106,7 @@ function home(
   lg: [number, number],
   fit: Img['fit'] = 'cover',
 ): Img {
-  const path = (size: string) => `/images/Homes/web/${name}-${size}.jpg`
+  const path = (size: string) => `/images/Homes/web/${name}-${size}.webp`
   return {
     src: path('sm'),
     srcSet: `${path('sm')} ${sm[0]}w, ${path('lg')} ${lg[0]}w`,

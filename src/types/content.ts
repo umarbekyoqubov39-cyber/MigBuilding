@@ -21,6 +21,8 @@ export type RichText = Array<string | { accent: string }>
 export interface VideoItem {
   /** Direct link to an .mp4/.webm file. Leave empty until the real video is ready. */
   src: string
+  /** Optional lower-resolution copy served to phones instead of `src`. */
+  srcSmall?: string
   poster: Img
   title: string
 }

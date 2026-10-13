@@ -1,0 +1,50 @@
+name: Deploy MigBuild Frontend
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+# Never run two deploys at once; a newer push waits for the current one.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+
+  deploy:
+    needs: ci
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to VPS via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 2299
+          script: |
+            set -e
+            mkdir -p /var/www/migbuild/frontend
+            cd /var/www/migbuild/frontend
+
+            if [ ! -d ".git" ]; then
+              git clone https://github.com/${{ github.repository }}.git .
+            else
+              git remote set-url origin https://github.com/${{ github.repository }}.git
+              git fetch origin main
+              git reset --hard origin/main
+              git clean -fd
+            fi
+
+            # Build first, then swap the container, so the old site stays up during the build.
+            docker compose build --pull
+            docker compose up -d --remove-orphans
+            docker image prune -f
+
+            echo "✅ Frontend deploy finished!"
+            docker compose logs --tail=30 frontend

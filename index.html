@@ -39,6 +39,16 @@
     />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- Hero poster is the largest above-the-fold image: fetch it before the JS runs. -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/images/hero-poster-960.webp"
+      imagesrcset="/images/hero-poster-960.webp 960w, /images/hero-poster-1920.webp 1920w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
     <link rel="preconnect" href="https://images.unsplash.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

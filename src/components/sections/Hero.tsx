@@ -36,6 +36,7 @@ export function Hero() {
       {showVideo && (
         <MediaVideo
           src={hero.video}
+          srcSmall={hero.videoSmall}
           playing={inView}
           muted
           className="absolute inset-0 -z-20 size-full object-cover"

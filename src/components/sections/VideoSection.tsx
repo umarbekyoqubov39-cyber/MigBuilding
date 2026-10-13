@@ -44,6 +44,7 @@ export function VideoSection() {
             {hasVideo && nearViewport && (
               <MediaVideo
                 src={video.src}
+                srcSmall={video.srcSmall}
                 playing={playing}
                 muted={muted}
                 onMutedChange={setMuted}

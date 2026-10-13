@@ -2,35 +2,31 @@ import { normalizeUzPhone, type LeadInput } from './leadSchema'
 
 export class LeadSubmitError extends Error {}
 
+/** ProHome CRM: every lead from this site lands in the MigBuild project with the "new lead" status. */
+const LEAD_ENDPOINT = 'https://backend.prohome.uz/api/v1/leeds/create-lead'
+const PROJECT_ID = 86
+const STATUS_ID = 451
+
 const TIMEOUT_MS = 10_000
 
-/**
- * Sends a lead to the endpoint configured in VITE_LEAD_ENDPOINT (see .env.example).
- * The endpoint must be your own backend or form service. Never put bot tokens or
- * API keys in VITE_* variables: everything in them is shipped to the browser.
- */
+/** The form has one name field: the first word goes to firstName, the rest (if any) to lastName. */
+function splitName(fullName: string): { firstName: string; lastName?: string } {
+  const [firstName, ...rest] = fullName.trim().split(/\s+/)
+  return rest.length > 0 ? { firstName, lastName: rest.join(' ') } : { firstName }
+}
+
 export async function submitLead(input: LeadInput): Promise<void> {
   const payload = {
-    name: input.name,
+    projectId: PROJECT_ID,
+    statusId: STATUS_ID,
+    ...splitName(input.name),
     phone: normalizeUzPhone(input.phone),
-    page: window.location.href,
-    submittedAt: new Date().toISOString(),
-  }
-
-  const endpoint = import.meta.env.VITE_LEAD_ENDPOINT
-  if (!endpoint) {
-    if (import.meta.env.DEV) {
-      console.info('[lead] VITE_LEAD_ENDPOINT is not set; simulating success in development.', payload)
-      await new Promise((resolve) => setTimeout(resolve, 600))
-      return
-    }
-    throw new LeadSubmitError('Lead endpoint is not configured')
   }
 
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS)
   try {
-    const res = await fetch(endpoint, {
+    const res = await fetch(LEAD_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify(payload),
