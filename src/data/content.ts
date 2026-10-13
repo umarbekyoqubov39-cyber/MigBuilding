@@ -33,10 +33,10 @@ export const featureVideo = {
   title: "Videoni ko'ring",
   caption: "Buyurtma berishdan oldin bu videoni ko'ring!",
   video: {
-    // PLACEHOLDER: link to the company presentation video (.mp4)
-    src: '',
-    poster: unsplash('1599707254554-027aeb4deacd', 'Qurilayotgan bino ustidagi minorali kranlar', { ratio: 16 / 9 }),
-    title: 'MigBuild taqdimot videosi',
+    // Same file as the hero background; the browser reuses what it already downloaded.
+    src: '/videos/Hero-vidio.MP4',
+    poster: hero.image,
+    title: "MigBuild turar-joy majmuasi: taqdimot videosi",
   } satisfies VideoItem,
 }
 
