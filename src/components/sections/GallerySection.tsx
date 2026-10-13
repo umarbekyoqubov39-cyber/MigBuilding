@@ -16,12 +16,20 @@ export function GallerySection() {
 
   const hasMore = gallery.images.length > gallery.initialCount
   const visible = expanded ? gallery.images : gallery.images.slice(0, gallery.initialCount)
+  // Even counts that don't fill rows of three (2, 4) read better as a 2-column grid on desktop.
+  const twoColumns = visible.length % 3 !== 0 && visible.length % 2 === 0
 
   return (
     <Section id="loyihalar" tone="dark" className="pt-16 md:pt-24">
       <SectionTitle id="loyihalar" text={gallery.title} />
 
-      <ul id="gallery-grid" className="mx-auto mt-8 grid max-w-6xl grid-cols-2 gap-2 sm:gap-3 md:mt-12 md:grid-cols-3 md:gap-4">
+      <ul
+        id="gallery-grid"
+        className={cx(
+          'mx-auto mt-8 grid grid-cols-2 gap-2 sm:gap-3 md:mt-12 md:gap-4',
+          twoColumns ? 'max-w-4xl' : 'max-w-6xl md:grid-cols-3',
+        )}
+      >
         {visible.map((image, i) => (
           <li key={image.src}>
             <Reveal delay={(i % 3) * 0.06}>
@@ -29,11 +37,11 @@ export function GallerySection() {
                 type="button"
                 onClick={() => setOpenIndex(i)}
                 aria-label={`Rasmni kattalashtirish: ${image.alt}`}
-                className="group block aspect-[4/3] w-full overflow-hidden rounded-lg bg-ink-850 sm:rounded-xl"
+                className="group block aspect-square w-full overflow-hidden rounded-lg bg-ink-850 sm:rounded-xl"
               >
                 <ResponsiveImage
                   image={image}
-                  sizes="(min-width: 1152px) 372px, (min-width: 768px) 32vw, 50vw"
+                  sizes={twoColumns ? '(min-width: 896px) 440px, 50vw' : '(min-width: 1152px) 372px, (min-width: 768px) 32vw, 50vw'}
                   className="size-full object-cover transition duration-500 group-hover:scale-105"
                 />
               </button>

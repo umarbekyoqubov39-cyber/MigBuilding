@@ -1,16 +1,15 @@
 import { CalendarX, ShieldX, TrendingUp } from 'lucide-react'
 
 import { unsplash } from '../lib/images'
-import type { FeatureCard, ProblemItem, ReelItem, RichText, VideoItem } from '../types/content'
+import type { FeatureCard, Img, ProblemItem, ReelItem, RichText, VideoItem } from '../types/content'
 import { company } from './company'
 
 /*
  * All page copy lives here so it can be edited without touching components.
  *
- * IMAGES: every photo below is an Unsplash stock placeholder, not MigBuild's own work.
- * Replace them with real project photos before launch, e.g.
- *   import heroPhoto from '../assets/hero.jpg'
- *   image: { src: heroPhoto, alt: '...' }
+ * IMAGES: the gallery and 3D promo use the company's photos from public/images/Homes.
+ * The strengths cards still use Unsplash stock placeholders, not MigBuild's own work;
+ * replace them with real photos before launch, e.g. image: { src: '/images/x.jpg', alt: '...' }
  */
 
 export const hero = {
@@ -92,6 +91,21 @@ export const statement = {
   subtitle: 'Siz kelajagingizga ishonchli sarmoya kiritasiz',
 }
 
+/**
+ * Company photos from public/images/Homes. Each has a small (~800px) and a large version in
+ * Homes/web, made from the originals so pages stay light; regenerate them when a photo changes.
+ */
+function home(name: string, alt: string, sm: [number, number], lg: [number, number]): Img {
+  const path = (size: string) => `/images/Homes/web/${name}-${size}.jpg`
+  return {
+    src: path('sm'),
+    srcSet: `${path('sm')} ${sm[0]}w, ${path('lg')} ${lg[0]}w`,
+    alt,
+    width: lg[0],
+    height: lg[1],
+  }
+}
+
 export const gallery = {
   title: [{ accent: 'Loyihalar' }, " ko'rinishi"] satisfies RichText,
   showAll: 'Barcha rasmlar',
@@ -99,18 +113,10 @@ export const gallery = {
   /** How many photos are visible before "Barcha rasmlar" is pressed. */
   initialCount: 6,
   images: [
-    unsplash('1600596542815-ffad4c1539a9', "Basseynli ikki qavatli zamonaviy oq uy"),
-    unsplash('1600585154340-be6161a56a0c', "Kechki yoritilgan zamonaviy xususiy uy"),
-    unsplash('1613490493576-7fde63acd811', 'Basseyn oldidagi uch qavatli zamonaviy villa'),
-    unsplash('1545324418-cc1a3fa10c00', "Balkonli ko'p qavatli turar-joy binosi"),
-    unsplash('1600566753190-17f0baa2a6c3', "Yog'och va shisha fasadli zamonaviy uy"),
-    unsplash('1512917774080-9991f1c4c750', 'Hovlisida basseyni bor bir qavatli villa'),
-    unsplash('1590579491624-f98f36d4c763', 'Zamonaviy ofis binosi va avtoturargoh'),
-    unsplash('1600607687939-ce8a6c25118c', "Keng oynali yorug' mehmonxona interyeri"),
-    unsplash('1460317442991-0ec209397118', "Balkonli ko'p qavatli turar-joy fasadi"),
-    unsplash('1605276374104-dee2a0ed3cd6', "Ikki garajli tosh fasadli xususiy uy"),
-    unsplash('1582268611958-ebfd161ef9cf', 'Basseyn va terrasali zamonaviy uy'),
-    unsplash('1574362848149-11496d93a7c7', "Daraxtlar orasidagi g'ishtli turar-joy binosi"),
+    home('home-1', "MigBuild qurgan ko'p qavatli turar-joy binosining balkonli old fasadi", [800, 600], [1600, 1200]),
+    home('home-2', 'MigBuild turar-joy binosining yon fasadi', [600, 800], [1200, 1600]),
+    home('home-3', 'Qurilishi yakunlanayotgan MigBuild turar-joy binosi', [600, 800], [1200, 1600]),
+    home('home-5', "MigBuild turar-joy majmuasining 3D loyihasi, yuqoridan ko'rinish", [800, 447], [1280, 715]),
   ],
 }
 
@@ -119,7 +125,7 @@ export const promo = {
   highlight: '3D',
   title: [{ accent: 'Bepul 3D loyiha' }, ' va dastlabki smeta oling'] satisfies RichText,
   description: "Ariza qoldirgan mijozlar uchun bo'lajak binoning 3D ko'rinishi va dastlabki smetasi bepul tayyorlanadi.",
-  image: unsplash('1523217582562-09d0def993a6', "Oq rangli zamonaviy ikki qavatli uy", { ratio: 16 / 10 }),
+  image: home('home-5', "MigBuild turar-joy majmuasining 3D loyihasi, yuqoridan ko'rinish", [800, 447], [1280, 715]),
 }
 
 export const urgency = {
