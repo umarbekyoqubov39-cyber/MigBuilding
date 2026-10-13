@@ -1,0 +1,67 @@
+import { lazy, Suspense, useState } from 'react'
+import { ChevronDown } from 'lucide-react'
+
+import { gallery } from '../../data/content'
+import { cx } from '../../lib/cx'
+import { ResponsiveImage } from '../ui/ResponsiveImage'
+import { Reveal } from '../ui/Reveal'
+import { Section, SectionTitle } from '../ui/Section'
+
+// Swiper is only needed once a photo is opened.
+const Lightbox = lazy(() => import('../ui/Lightbox'))
+
+export function GallerySection() {
+  const [expanded, setExpanded] = useState(false)
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  const hasMore = gallery.images.length > gallery.initialCount
+  const visible = expanded ? gallery.images : gallery.images.slice(0, gallery.initialCount)
+
+  return (
+    <Section id="loyihalar" tone="dark" className="pt-16 md:pt-24">
+      <SectionTitle id="loyihalar" text={gallery.title} />
+
+      <ul id="gallery-grid" className="mx-auto mt-8 grid max-w-6xl grid-cols-2 gap-2 sm:gap-3 md:mt-12 md:grid-cols-3 md:gap-4">
+        {visible.map((image, i) => (
+          <li key={image.src}>
+            <Reveal delay={(i % 3) * 0.06}>
+              <button
+                type="button"
+                onClick={() => setOpenIndex(i)}
+                aria-label={`Rasmni kattalashtirish: ${image.alt}`}
+                className="group block aspect-[4/3] w-full overflow-hidden rounded-lg bg-ink-850 sm:rounded-xl"
+              >
+                <ResponsiveImage
+                  image={image}
+                  sizes="(min-width: 1152px) 372px, (min-width: 768px) 32vw, 50vw"
+                  className="size-full object-cover transition duration-500 group-hover:scale-105"
+                />
+              </button>
+            </Reveal>
+          </li>
+        ))}
+      </ul>
+
+      {hasMore && (
+        <div className="mt-6 flex justify-center md:mt-8">
+          <button
+            type="button"
+            onClick={() => setExpanded((e) => !e)}
+            aria-expanded={expanded}
+            aria-controls="gallery-grid"
+            className="inline-flex min-h-11 items-center gap-1.5 px-4 text-base font-bold text-gold-400 transition hover:text-gold-300 md:text-xl"
+          >
+            {expanded ? gallery.showLess : gallery.showAll}
+            <ChevronDown className={cx('size-5 transition', expanded && 'rotate-180')} aria-hidden />
+          </button>
+        </div>
+      )}
+
+      {openIndex !== null && (
+        <Suspense fallback={null}>
+          <Lightbox images={gallery.images} startIndex={openIndex} onClose={() => setOpenIndex(null)} />
+        </Suspense>
+      )}
+    </Section>
+  )
+}
