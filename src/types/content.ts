@@ -8,6 +8,11 @@ export interface Img {
   /** Intrinsic size, used to reserve space and avoid layout shift. */
   width?: number
   height?: number
+  /**
+   * How the image fills a fixed-shape box such as a gallery tile. 'contain' shows it whole
+   * (for floor plans and other images with text near the edges); defaults to 'cover'.
+   */
+  fit?: 'cover' | 'contain'
 }
 
 /** Heading text where `{ accent }` parts are rendered in the gold gradient. */

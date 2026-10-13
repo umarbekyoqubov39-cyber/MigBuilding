@@ -37,12 +37,19 @@ export function GallerySection() {
                 type="button"
                 onClick={() => setOpenIndex(i)}
                 aria-label={`Rasmni kattalashtirish: ${image.alt}`}
-                className="group block aspect-square w-full overflow-hidden rounded-lg bg-ink-850 sm:rounded-xl"
+                className={cx(
+                  'group block aspect-square w-full overflow-hidden rounded-lg sm:rounded-xl',
+                  // Plans have a light background of their own, so a white tile frames them cleanly.
+                  image.fit === 'contain' ? 'bg-white p-1.5' : 'bg-ink-850',
+                )}
               >
                 <ResponsiveImage
                   image={image}
                   sizes={twoColumns ? '(min-width: 896px) 440px, 50vw' : '(min-width: 1152px) 372px, (min-width: 768px) 32vw, 50vw'}
-                  className="size-full object-cover transition duration-500 group-hover:scale-105"
+                  className={cx(
+                    'size-full transition duration-500 group-hover:scale-105',
+                    image.fit === 'contain' ? 'object-contain' : 'object-cover',
+                  )}
                 />
               </button>
             </Reveal>

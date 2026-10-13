@@ -95,7 +95,13 @@ export const statement = {
  * Company photos from public/images/Homes. Each has a small (~800px) and a large version in
  * Homes/web, made from the originals so pages stay light; regenerate them when a photo changes.
  */
-function home(name: string, alt: string, sm: [number, number], lg: [number, number]): Img {
+function home(
+  name: string,
+  alt: string,
+  sm: [number, number],
+  lg: [number, number],
+  fit: Img['fit'] = 'cover',
+): Img {
   const path = (size: string) => `/images/Homes/web/${name}-${size}.jpg`
   return {
     src: path('sm'),
@@ -103,6 +109,7 @@ function home(name: string, alt: string, sm: [number, number], lg: [number, numb
     alt,
     width: lg[0],
     height: lg[1],
+    fit,
   }
 }
 
@@ -117,6 +124,10 @@ export const gallery = {
     home('home-2', 'MigBuild turar-joy binosining yon fasadi', [600, 800], [1200, 1600]),
     home('home-3', 'Qurilishi yakunlanayotgan MigBuild turar-joy binosi', [600, 800], [1200, 1600]),
     home('home-5', "MigBuild turar-joy majmuasining 3D loyihasi, yuqoridan ko'rinish", [800, 447], [1280, 715]),
+    // Floor plans: shown whole so the room labels and areas are not cropped.
+    home('home-6', "MigBuild: 2 xonali kvartira rejasi, 48,8 m²", [734, 800], [1175, 1280], 'contain'),
+    home('home-7', "MigBuild: 1 xonali kvartira rejasi, 34,8 m²", [674, 800], [1079, 1280], 'contain'),
+    home('home-8', "MigBuild: 3 xonali kvartira rejasi, 75,6 m²", [800, 662], [1280, 1059], 'contain'),
   ],
 }
 
