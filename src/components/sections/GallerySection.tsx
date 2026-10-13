@@ -31,7 +31,11 @@ export function GallerySection() {
         )}
       >
         {visible.map((image, i) => (
-          <li key={image.src}>
+          <li
+            key={image.src}
+            // A lone photo in the last row of three sits in the middle column.
+            className={cx(!twoColumns && i === visible.length - 1 && visible.length % 3 === 1 && 'md:col-start-2')}
+          >
             <Reveal delay={(i % 3) * 0.06}>
               <button
                 type="button"

@@ -44,7 +44,7 @@ export default function Lightbox({ images, startIndex, onClose }: Props) {
               <ResponsiveImage
                 image={image}
                 sizes="(min-width: 1152px) 1152px, 100vw"
-                className="aspect-[4/3] max-h-[82svh] w-full rounded-xl bg-ink-850 object-contain"
+                className="mx-auto h-auto max-h-[78svh] w-auto max-w-full rounded-xl bg-ink-850 object-contain"
               />
             </SwiperSlide>
           ))}
