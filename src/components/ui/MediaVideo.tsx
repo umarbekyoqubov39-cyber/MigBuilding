@@ -5,7 +5,8 @@ interface Props {
   /** Play while true, pause otherwise. */
   playing: boolean
   muted: boolean
-  label: string
+  /** Accessible name. Leave out for purely decorative background video. */
+  label?: string
   className?: string
 }
 
@@ -22,7 +23,16 @@ export function MediaVideo({ src, playing, muted, label, className }: Props) {
   }, [playing])
 
   return (
-    <video ref={ref} muted={muted} loop playsInline preload="metadata" aria-label={label} className={className}>
+    <video
+      ref={ref}
+      muted={muted}
+      loop
+      playsInline
+      preload="metadata"
+      aria-label={label}
+      aria-hidden={label ? undefined : true}
+      className={className}
+    >
       <source src={src} />
     </video>
   )

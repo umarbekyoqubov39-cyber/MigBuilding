@@ -31,8 +31,17 @@ export interface FeatureCard {
   image: Img
 }
 
-export interface ReelItem extends VideoItem {
-  eyebrow: string
+export interface ReelItem {
+  /** Video file, e.g. '/videos/name.mp4' for a file in public/videos. */
+  src: string
+  /** Describes the video for screen readers. */
+  title: string
+  /** Landscape videos get a wide frame; portrait ones the phone-shaped frame. */
+  orientation: 'portrait' | 'landscape'
+  /** Optional cover image shown until the video starts. */
+  poster?: Img
+  /** Optional text drawn over the video. Leave out when the video has its own captions. */
+  caption?: { eyebrow: string; title: string }
 }
 
 export interface SocialLink {

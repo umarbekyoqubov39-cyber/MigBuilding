@@ -18,10 +18,15 @@ export const hero = {
   /** Rendered as three lines: gold / white / gold. */
   title: ['Loyihadan kalit', 'topshirishgacha', 'bitta jamoa'] as const,
   subtitle: "Turar-joy, tijorat va sanoat binolarini loyihalash va qurish — bir joyda, bir shartnoma asosida.",
-  image: unsplash('1541888946425-d81bb19240f5', 'Qurilish maydonida poydevor ishlarini kuzatayotgan muhandislar', {
-    ratio: 16 / 9,
-    widths: [640, 1080, 1600, 2400],
-  }),
+  /** Background video. Plays muted in a loop; the image below shows until it starts. */
+  video: '/videos/Hero-vidio.MP4',
+  /** Frame taken from the hero video at 0:03. */
+  image: {
+    src: '/images/hero-poster.jpg',
+    alt: "MigBuild turar-joy majmuasining ko'p qavatli binolari",
+    width: 1920,
+    height: 1072,
+  },
 }
 
 export const featureVideo = {
@@ -123,38 +128,19 @@ export const urgency = {
   cta: 'Buyurtmalar cheklangan',
 }
 
-const reelPoster = (id: string, alt: string) => unsplash(id, alt, { ratio: 2 / 3, widths: [360, 540, 810] })
+// Add more videos here; with two or more, swiping and the up/down buttons appear automatically.
+const reelItems: ReelItem[] = [
+  {
+    src: '/videos/reels-1.mp4',
+    title: "MigBuild: Farg'onadagi Qirg'uli City savdo ofisi va bino maketi",
+    orientation: 'portrait',
+  },
+]
 
 export const reels = {
   title: [{ accent: 'Reels' }, ' va Videolar'] satisfies RichText,
   badge: 'Reels',
-  // PLACEHOLDER: add direct .mp4 links to vertical (9:16) videos in `src`.
-  items: [
-    {
-      eyebrow: "Ob'ektdan reportaj",
-      title: "Qurilish jarayoni: poydevordan tom yopishgacha",
-      src: '',
-      poster: reelPoster('1531834685032-c34bf0d84c77', 'Armatura karkasida ishlayotgan quruvchilar'),
-    },
-    {
-      eyebrow: 'Jamoa',
-      title: 'Qurilish maydonidagi bir ish kunidan lavhalar',
-      src: '',
-      poster: reelPoster('1504307651254-35680f356dfd', 'Qurilish maydonida ishlayotgan quruvchilar, yuqoridan ko\'rinish'),
-    },
-    {
-      eyebrow: 'Texnika',
-      title: 'Kranlar va texnika qanday ishlaydi',
-      src: '',
-      poster: reelPoster('1429497419816-9ca5cfb4571a', 'Qurilayotgan bino ustidagi minorali kranlar'),
-    },
-    {
-      eyebrow: 'Karkas',
-      title: "Ko'p qavatli bino karkasi qanday quriladi",
-      src: '',
-      poster: reelPoster('1508450859948-4e04fabaa4ea', "Qurilayotgan ko'p qavatli binoning yog'och karkasi"),
-    },
-  ] satisfies ReelItem[],
+  items: reelItems,
 }
 
 export const lead = {

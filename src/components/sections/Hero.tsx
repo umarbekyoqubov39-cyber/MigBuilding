@@ -1,21 +1,46 @@
+import { useRef } from 'react'
 import { ChevronDown, MapPin } from 'lucide-react'
-import { m } from 'motion/react'
+import { m, useReducedMotion } from 'motion/react'
 
 import { company } from '../../data/company'
 import { hero } from '../../data/content'
+import { useInView } from '../../hooks/useInView'
+import { MediaVideo } from '../ui/MediaVideo'
 import { ResponsiveImage } from '../ui/ResponsiveImage'
 
 const lineColors = ['text-gold', 'text-white', 'text-gold'] as const
 
+/** True when the visitor asked the browser to save data (e.g. Chrome Lite mode on mobile). */
+const saveData =
+  typeof navigator !== 'undefined' &&
+  (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true
+
 export function Hero() {
+  const ref = useRef<HTMLElement>(null)
+  const inView = useInView(ref)
+  const reduceMotion = useReducedMotion()
+  const showVideo = !reduceMotion && !saveData
+
   return (
-    <header className="relative isolate flex min-h-[max(600px,100svh)] flex-col items-center overflow-hidden bg-ink-950 px-4 text-center sm:px-6">
+    <header
+      ref={ref}
+      className="relative isolate flex min-h-[max(600px,100svh)] flex-col items-center overflow-hidden bg-ink-950 px-4 text-center sm:px-6"
+    >
       <ResponsiveImage
         image={hero.image}
         sizes="100vw"
         priority
         className="absolute inset-0 -z-20 size-full object-cover"
       />
+      {/* Decorative background video over the poster; paused while the hero is off screen */}
+      {showVideo && (
+        <MediaVideo
+          src={hero.video}
+          playing={inView}
+          muted
+          className="absolute inset-0 -z-20 size-full object-cover"
+        />
+      )}
       {/* Darkening layers keep the headline readable on any photo */}
       <div aria-hidden className="absolute inset-0 -z-10 bg-black/60" />
       <div
