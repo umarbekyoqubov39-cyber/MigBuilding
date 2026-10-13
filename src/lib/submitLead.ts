@@ -13,8 +13,6 @@ export async function submitLead(input: LeadInput): Promise<void> {
   const payload = {
     name: input.name,
     phone: normalizeUzPhone(input.phone),
-    service: input.service,
-    message: input.message,
     page: window.location.href,
     submittedAt: new Date().toISOString(),
   }

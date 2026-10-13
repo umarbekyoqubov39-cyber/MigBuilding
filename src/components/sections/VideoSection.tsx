@@ -46,6 +46,7 @@ export function VideoSection() {
                 src={video.src}
                 playing={playing}
                 muted={muted}
+                onMutedChange={setMuted}
                 label={video.title}
                 className="absolute inset-0 size-full object-cover"
               />
@@ -69,7 +70,7 @@ export function VideoSection() {
                 type="button"
                 onClick={() => setMuted((m) => !m)}
                 aria-pressed={!muted}
-                className="absolute top-2 right-2 inline-flex min-h-10 items-center gap-1.5 rounded-full bg-black/70 px-3 text-xs font-semibold text-white backdrop-blur-sm sm:top-4 sm:right-4 sm:text-sm"
+                className="absolute right-2 bottom-2 inline-flex min-h-10 items-center gap-1.5 rounded-full bg-black/70 px-3 text-xs font-semibold text-white backdrop-blur-sm sm:right-4 sm:bottom-4 sm:text-sm"
               >
                 {muted ? <VolumeX className="size-4" aria-hidden /> : <Volume2 className="size-4" aria-hidden />}
                 {muted ? 'Ovoz uchun bosing' : "Ovozni o'chirish"}

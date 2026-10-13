@@ -12,7 +12,7 @@ import { Modal } from '../ui/Modal'
 
 type Status = 'idle' | 'success' | 'error'
 
-const DEFAULTS: LeadInput = { name: '', phone: '+998 ', service: '', message: '', website: '' }
+const DEFAULTS: LeadInput = { name: '', phone: '+998 ', website: '' }
 
 const fieldClass =
   'w-full rounded-xl border border-white/10 bg-ink-900 px-4 py-3 text-base text-white placeholder:text-white/35 transition focus:border-gold-400 focus:outline-none focus-visible:outline-none aria-invalid:border-red-500/70'
@@ -48,8 +48,8 @@ export default function LeadModal({ open, onClose }: { open: boolean; onClose: (
   return (
     <Modal open={open} onClose={handleClose} labelledBy={titleId} className="w-[min(32rem,calc(100%-2rem))] md:w-[min(60rem,calc(100%-3rem))]">
       {/* Phones: one scrolling column (form, then map). md+: form and map side by side. */}
-      <div className="grid max-h-[calc(100svh-2rem)] overflow-y-auto rounded-3xl border border-white/10 bg-ink-850 md:h-[min(46rem,calc(100svh-3rem))] md:grid-cols-2 md:grid-rows-[minmax(0,1fr)] md:overflow-hidden">
-        <div className="p-6 sm:p-8 md:overflow-y-auto">
+      <div className="grid max-h-[calc(100svh-2rem)] overflow-y-auto rounded-3xl border border-white/10 bg-ink-850 md:h-[min(34rem,calc(100svh-3rem))] md:grid-cols-2 md:grid-rows-[minmax(0,1fr)] md:overflow-hidden">
+        <div className="p-6 sm:p-8 md:flex md:flex-col md:justify-center md:overflow-y-auto">
           <div className="flex items-center gap-3 pr-10">
             <img src={company.logo.src} alt="" width={48} height={48} className="size-12 shrink-0 rounded-full" />
             <h2 id={titleId} className="text-2xl font-extrabold tracking-tight sm:text-3xl">
@@ -98,29 +98,6 @@ export default function LeadModal({ open, onClose }: { open: boolean; onClose: (
                     aria-describedby={errors.phone ? 'lead-phone-error' : undefined}
                     className={fieldClass}
                     {...register('phone')}
-                  />
-                </Field>
-
-                <Field label="Qaysi xizmat kerak?" htmlFor="lead-service" error={errors.service}>
-                  <select id="lead-service" className={fieldClass} {...register('service')}>
-                    <option value="">Tanlang (ixtiyoriy)</option>
-                    {lead.services.map((service) => (
-                      <option key={service} value={service}>
-                        {service}
-                      </option>
-                    ))}
-                  </select>
-                </Field>
-
-                <Field label="Izoh (ixtiyoriy)" htmlFor="lead-message" error={errors.message}>
-                  <textarea
-                    id="lead-message"
-                    rows={3}
-                    placeholder="Ob'ekt, maydon, muddat…"
-                    aria-invalid={!!errors.message}
-                    aria-describedby={errors.message ? 'lead-message-error' : undefined}
-                    className={`${fieldClass} resize-none`}
-                    {...register('message')}
                   />
                 </Field>
 

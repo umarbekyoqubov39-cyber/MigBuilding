@@ -21,8 +21,6 @@ export const leadSchema = z.object({
     .string()
     .trim()
     .refine((v) => normalizeUzPhone(v) !== null, "Raqamni to'liq kiriting, masalan: +998 90 123 45 67"),
-  service: z.string().max(80),
-  message: z.string().trim().max(500, 'Izoh 500 belgidan oshmasligi kerak'),
   /** Honeypot: hidden from people, bots tend to fill it in. */
   website: z.string().max(0),
 })

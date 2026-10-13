@@ -75,6 +75,7 @@ export default function ReelsSection() {
                     src={reel.poster ? reel.src : `${reel.src}#t=0.1`}
                     playing={visible && i === active && canPlay}
                     muted={muted}
+                    onMutedChange={setMuted}
                     label={reel.title}
                     className="absolute inset-0 size-full object-cover"
                   />
