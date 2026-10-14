@@ -6,6 +6,7 @@ import { comingSoon, featureVideo } from '../../data/content'
 import { useInView } from '../../hooks/useInView'
 import { MediaVideo } from '../ui/MediaVideo'
 import { ResponsiveImage } from '../ui/ResponsiveImage'
+import { GoldGlow } from '../ui/Decor'
 import { Reveal } from '../ui/Reveal'
 import { Section } from '../ui/Section'
 
@@ -22,7 +23,10 @@ export function VideoSection() {
   const playing = visible && (!reduceMotion || userPlay)
 
   return (
-    <Section id="video">
+    <Section
+      id="video"
+      decor={<GoldGlow className="top-1/2 left-1/2 h-[40rem] w-[70rem] max-w-[220vw] -translate-x-1/2 -translate-y-1/3" />}
+    >
       <Reveal>
         <h2
           id="video-title"

@@ -4,6 +4,7 @@ import { ChevronDown } from 'lucide-react'
 import { gallery } from '../../data/content'
 import { cx } from '../../lib/cx'
 import { ResponsiveImage } from '../ui/ResponsiveImage'
+import { GoldGlow } from '../ui/Decor'
 import { Reveal } from '../ui/Reveal'
 import { Section, SectionTitle } from '../ui/Section'
 
@@ -20,7 +21,13 @@ export function GallerySection() {
   const twoColumns = visible.length % 3 !== 0 && visible.length % 2 === 0
 
   return (
-    <Section id="loyihalar" tone="dark" className="pt-16 md:pt-24">
+    <Section
+      id="loyihalar"
+      tone="dark"
+      className="pt-16 md:pt-24"
+      divider={false}
+      decor={<GoldGlow className="-bottom-40 -left-56 size-[38rem]" />}
+    >
       <SectionTitle id="loyihalar" text={gallery.title} />
 
       <ul
@@ -42,7 +49,7 @@ export function GallerySection() {
                 onClick={() => setOpenIndex(i)}
                 aria-label={`Rasmni kattalashtirish: ${image.alt}`}
                 className={cx(
-                  'group block aspect-square w-full overflow-hidden rounded-lg sm:rounded-xl',
+                  'group block aspect-square w-full overflow-hidden rounded-lg ring-1 ring-white/5 transition-shadow duration-300 hover:ring-2 hover:ring-gold-400/60 sm:rounded-xl',
                   // Plans have a light background of their own, so a white tile frames them cleanly.
                   image.fit === 'contain' ? 'bg-white p-1.5' : 'bg-ink-850',
                 )}

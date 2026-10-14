@@ -1,10 +1,20 @@
 import { problems } from '../../data/content'
+import { Blueprint, GoldGlow } from '../ui/Decor'
 import { Reveal } from '../ui/Reveal'
 import { Section, SectionTitle } from '../ui/Section'
 
 export function ProblemSection() {
   return (
-    <Section id="muammo" tone="dark">
+    <Section
+      id="muammo"
+      tone="dark"
+      decor={
+        <>
+          <Blueprint />
+          <GoldGlow className="-top-32 -right-48 size-[34rem]" />
+        </>
+      }
+    >
       <SectionTitle id="muammo" text={problems.title} className="max-w-[36rem]" />
 
       <ul className="mx-auto mt-8 max-w-3xl space-y-3 md:mt-10 md:space-y-4">

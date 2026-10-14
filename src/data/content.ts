@@ -17,24 +17,29 @@ export const hero = {
   /** Rendered as three lines: gold / white / gold. */
   title: ['Loyihadan kalit', 'topshirishgacha', 'bitta jamoa'] as const,
   subtitle: "Turar-joy, tijorat va sanoat binolarini loyihalash va qurish — bir joyda, bir shartnoma asosida.",
-  /** Background video. Plays muted in a loop; the image below shows until it starts. */
-  video: '/videos/Hero-vidio.MP4',
-  /** Frame taken from the hero video at 0:03. */
-  image: {
-    src: '/images/hero-poster.jpg',
-    alt: "MigBuild turar-joy majmuasining ko'p qavatli binolari",
-    width: 1920,
-    height: 1072,
-  },
+  /**
+   * Background photo, served up to 4K (3840px) for large screens; phones get a smaller size.
+   * If you change it, update the matching <link rel="preload"> in index.html too.
+   */
+  image: unsplash('1429497419816-9ca5cfb4571a', "Qurilayotgan ko'p qavatli bino ustidagi sariq minorali kranlar", {
+    ratio: 3 / 2,
+    widths: [640, 1080, 1600, 2400, 3840],
+  }),
 }
 
 export const featureVideo = {
   title: "Videoni ko'ring",
   caption: "Buyurtma berishdan oldin bu videoni ko'ring!",
   video: {
-    // Same file as the hero background; the browser reuses what it already downloaded.
+    // Loads only when this section is about to scroll into view.
     src: '/videos/Hero-vidio.MP4',
-    poster: hero.image,
+    /** Frame taken from the video at 0:03. */
+    poster: {
+      src: '/images/hero-poster.jpg',
+      alt: "MigBuild turar-joy majmuasining ko'p qavatli binolari",
+      width: 1920,
+      height: 1072,
+    },
     title: "MigBuild turar-joy majmuasi: taqdimot videosi",
   } satisfies VideoItem,
 }
@@ -155,6 +160,8 @@ const reelItems: ReelItem[] = [
 ]
 
 export const reels = {
+  /** Hidden for now. Set to true to show the section again; its code and videos are kept. */
+  enabled: false,
   title: [{ accent: 'Reels' }, ' va Videolar'] satisfies RichText,
   badge: 'Reels',
   items: reelItems,

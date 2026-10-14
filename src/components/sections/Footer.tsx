@@ -1,6 +1,7 @@
 import { MapPin, Phone } from 'lucide-react'
 
 import { company } from '../../data/company'
+import { GoldGlow, GoldHairline } from '../ui/Decor'
 import { SocialIcon } from '../ui/SocialIcon'
 
 const YEAR = new Date().getFullYear()
@@ -11,7 +12,9 @@ export function Footer() {
   const socials = company.socials.filter((s) => s.href)
 
   return (
-    <footer className="border-t border-white/5 bg-ink-950 px-4 pt-14 pb-28 sm:px-6 md:pb-16">
+    <footer className="relative isolate overflow-hidden bg-ink-950 px-4 pt-14 pb-28 sm:px-6 md:pb-16">
+      <GoldHairline className="max-w-none" />
+      <GoldGlow className="-top-48 -left-40 size-[30rem]" />
       <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
         <div>
           <p className="flex items-center gap-3 text-2xl font-extrabold tracking-tight">
@@ -21,7 +24,7 @@ export function Footer() {
               width={56}
               height={56}
               loading="lazy"
-              className="size-14 shrink-0 rounded-full"
+              className="size-14 shrink-0 rounded-full ring-2 ring-gold-400/40"
             />
             {company.name}
           </p>

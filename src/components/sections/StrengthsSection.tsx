@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react'
 import { strengths } from '../../data/content'
 import { useOpenLead } from '../lead/lead-context'
 import { ResponsiveImage } from '../ui/ResponsiveImage'
+import { GoldGlow } from '../ui/Decor'
 import { Reveal } from '../ui/Reveal'
 import { Section, SectionTitle } from '../ui/Section'
 
@@ -10,14 +11,23 @@ export function StrengthsSection() {
   const openLead = useOpenLead()
 
   return (
-    <Section id="afzalliklar">
+    <Section
+      id="afzalliklar"
+      decor={
+        <>
+          <GoldGlow className="top-24 -left-64 size-[40rem]" />
+          <GoldGlow className="-right-64 bottom-0 size-[40rem]" />
+        </>
+      }
+    >
       <SectionTitle id="afzalliklar" text={strengths.title} className="max-w-[44rem]" />
 
       <ul className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2 sm:gap-6 md:mt-14">
         {strengths.cards.map((card, i) => (
           <li key={card.title}>
             <Reveal delay={(i % 2) * 0.08} className="h-full">
-              <article className="h-full rounded-2xl border border-white/8 bg-ink-800 p-4 sm:p-5">
+              <article className="relative h-full rounded-2xl border border-white/8 bg-linear-to-b from-ink-800 to-ink-850 p-4 transition-colors duration-300 hover:border-gold-400/40 sm:p-5">
+                <div aria-hidden className="gold-hairline absolute inset-x-8 top-0" />
                 <div className="aspect-[16/10] overflow-hidden rounded-xl bg-ink-850 shadow-[0_12px_30px_rgba(0,0,0,0.45)]">
                   <ResponsiveImage
                     image={card.image}

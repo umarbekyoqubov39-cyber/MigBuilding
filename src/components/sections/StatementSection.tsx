@@ -1,9 +1,15 @@
 import { statement } from '../../data/content'
+import { GoldGlow, GoldHairline } from '../ui/Decor'
 import { Reveal } from '../ui/Reveal'
 
 export function StatementSection() {
   return (
-    <section aria-labelledby="statement-title" className="bg-ink-950 px-4 pt-20 pb-4 text-center sm:px-6 md:pt-28">
+    <section
+      aria-labelledby="statement-title"
+      className="relative isolate overflow-hidden bg-ink-950 px-4 pt-20 pb-4 text-center sm:px-6 md:pt-28"
+    >
+      <GoldHairline />
+      <GoldGlow className="top-4 left-1/2 h-[26rem] w-[56rem] max-w-[200vw] -translate-x-1/2" />
       <Reveal>
         <h2
           id="statement-title"

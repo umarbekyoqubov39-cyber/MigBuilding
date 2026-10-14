@@ -12,6 +12,7 @@ import { StatementSection } from './components/sections/StatementSection'
 import { StrengthsSection } from './components/sections/StrengthsSection'
 import { UrgencySection } from './components/sections/UrgencySection'
 import { VideoSection } from './components/sections/VideoSection'
+import { reels } from './data/content'
 
 // The reels carousel (Swiper) is at the bottom of the page, so it loads in its own chunk.
 const ReelsSection = lazy(() => import('./components/sections/ReelsSection'))
@@ -36,9 +37,12 @@ function App() {
             <GallerySection />
             <PromoSection />
             <UrgencySection />
-            <Suspense fallback={<div className="min-h-208 bg-ink-900" />}>
-              <ReelsSection />
-            </Suspense>
+            {/* While disabled, the reels chunk and its video are never downloaded. */}
+            {reels.enabled && (
+              <Suspense fallback={<div className="min-h-208 bg-ink-900" />}>
+                <ReelsSection />
+              </Suspense>
+            )}
           </main>
           <Footer />
           <FloatingCta />

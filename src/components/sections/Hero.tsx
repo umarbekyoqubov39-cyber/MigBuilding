@@ -1,52 +1,30 @@
-import { useRef } from 'react'
 import { ChevronDown, MapPin } from 'lucide-react'
-import { m, useReducedMotion } from 'motion/react'
+import { m } from 'motion/react'
 
 import { company } from '../../data/company'
 import { hero } from '../../data/content'
-import { useInView } from '../../hooks/useInView'
-import { MediaVideo } from '../ui/MediaVideo'
+import { GoldGlow } from '../ui/Decor'
 import { ResponsiveImage } from '../ui/ResponsiveImage'
 
 const lineColors = ['text-gold', 'text-white', 'text-gold'] as const
 
-/** True when the visitor asked the browser to save data (e.g. Chrome Lite mode on mobile). */
-const saveData =
-  typeof navigator !== 'undefined' &&
-  (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true
-
 export function Hero() {
-  const ref = useRef<HTMLElement>(null)
-  const inView = useInView(ref)
-  const reduceMotion = useReducedMotion()
-  const showVideo = !reduceMotion && !saveData
-
   return (
-    <header
-      ref={ref}
-      className="relative isolate flex min-h-[max(600px,100svh)] flex-col items-center overflow-hidden bg-ink-950 px-4 text-center sm:px-6"
-    >
+    <header className="relative isolate flex min-h-[max(600px,100svh)] flex-col items-center overflow-hidden bg-ink-950 px-4 text-center sm:px-6">
       <ResponsiveImage
         image={hero.image}
         sizes="100vw"
         priority
         className="absolute inset-0 -z-20 size-full object-cover"
       />
-      {/* Decorative background video over the poster; paused while the hero is off screen */}
-      {showVideo && (
-        <MediaVideo
-          src={hero.video}
-          playing={inView}
-          muted
-          className="absolute inset-0 -z-20 size-full object-cover"
-        />
-      )}
       {/* Darkening layers keep the headline readable on any photo */}
       <div aria-hidden className="absolute inset-0 -z-10 bg-black/60" />
       <div
         aria-hidden
         className="absolute inset-0 -z-10 bg-linear-to-b from-black/50 via-transparent via-40% to-ink-950"
       />
+      {/* Warm golden light rising from the bottom, behind the headline */}
+      <GoldGlow className="-bottom-[22rem] left-1/2 h-[36rem] w-[64rem] max-w-[200vw] -translate-x-1/2 opacity-90" />
 
       <img
         src={company.logo.src}
@@ -54,7 +32,7 @@ export function Hero() {
         width={72}
         height={72}
         fetchPriority="high"
-        className="mt-5 size-16 rounded-full shadow-[0_0_30px_rgba(0,0,0,0.5)] ring-2 ring-white/15 sm:mt-7 sm:size-20"
+        className="mt-5 size-16 rounded-full shadow-[0_0_30px_rgba(235,176,42,0.35)] ring-2 ring-gold-400/40 sm:mt-7 sm:size-20"
       />
 
       <p className="mt-4 inline-flex max-w-full items-center gap-2 rounded-full border border-gold-400/35 bg-black/40 px-4 py-2.5 text-[0.6875rem] font-semibold tracking-wide text-gold-400 uppercase backdrop-blur-sm sm:mt-5 sm:px-6 sm:py-3 sm:text-sm">
@@ -76,11 +54,18 @@ export function Hero() {
             </span>
           ))}
         </m.h1>
+        <m.div
+          aria-hidden
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+          className="bg-gold mt-6 h-[3px] w-20 rounded-full sm:mt-8 sm:w-24"
+        />
         <m.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.25 }}
-          className="mt-6 max-w-xl text-sm text-white/70 sm:mt-8 sm:text-base"
+          className="mt-5 max-w-xl text-sm text-white/75 sm:mt-6 sm:text-base"
         >
           {hero.subtitle}
         </m.p>
@@ -89,7 +74,7 @@ export function Hero() {
       <a
         href="#video"
         aria-label="Keyingi bo'limga o'tish"
-        className="mb-4 hidden size-11 place-items-center rounded-full text-white/70 sm:grid transition hover:text-gold-400 motion-safe:animate-bounce"
+        className="mb-4 hidden size-11 place-items-center rounded-full text-gold-400/80 transition hover:text-gold-300 motion-safe:animate-bounce sm:grid"
       >
         <ChevronDown className="size-6" aria-hidden />
       </a>
