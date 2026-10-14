@@ -1,0 +1,7 @@
+services:
+  frontend:
+    build: .
+    container_name: migbuild_frontend
+    restart: always
+    ports:
+      - "5171:5171"

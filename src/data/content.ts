@@ -31,11 +31,13 @@ export const featureVideo = {
   title: "Videoni ko'ring",
   caption: "Buyurtma berishdan oldin bu videoni ko'ring!",
   video: {
-    // Loads only when this section is about to scroll into view.
-    src: '/videos/Hero-vidio.MP4',
+    // Loads only when this section is about to scroll into view; phones get the 720p copy.
+    src: '/videos/hero-1080.mp4',
+    srcSmall: '/videos/hero-720.mp4',
     /** Frame taken from the video at 0:03. */
     poster: {
-      src: '/images/hero-poster.jpg',
+      src: '/images/hero-poster-960.webp',
+      srcSet: '/images/hero-poster-960.webp 960w, /images/hero-poster-1920.webp 1920w',
       alt: "MigBuild turar-joy majmuasining ko'p qavatli binolari",
       width: 1920,
       height: 1072,
@@ -107,7 +109,7 @@ function home(
   lg: [number, number],
   fit: Img['fit'] = 'cover',
 ): Img {
-  const path = (size: string) => `/images/Homes/web/${name}-${size}.jpg`
+  const path = (size: string) => `/images/Homes/web/${name}-${size}.webp`
   return {
     src: path('sm'),
     srcSet: `${path('sm')} ${sm[0]}w, ${path('lg')} ${lg[0]}w`,

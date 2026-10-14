@@ -1,7 +1,12 @@
 import { useEffect, useRef } from 'react'
 
+/** Screens that get `srcSmall` instead of `src`. */
+const SMALL_SCREEN = '(max-width: 767px)'
+
 interface Props {
   src: string
+  /** Optional lighter copy for phones; the browser picks it when the screen is narrow. */
+  srcSmall?: string
   /** Play while true, pause otherwise. */
   playing: boolean
   muted: boolean
@@ -13,7 +18,7 @@ interface Props {
 }
 
 /** A looping, inline video whose playback is driven by the parent (e.g. visibility). */
-export function MediaVideo({ src, playing, muted, onMutedChange, label, className }: Props) {
+export function MediaVideo({ src, srcSmall, playing, muted, onMutedChange, label, className }: Props) {
   const ref = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
@@ -45,7 +50,8 @@ export function MediaVideo({ src, playing, muted, onMutedChange, label, classNam
       aria-hidden={label ? undefined : true}
       className={className}
     >
-      <source src={src} />
+      {srcSmall && <source src={srcSmall} type="video/mp4" media={SMALL_SCREEN} />}
+      <source src={src} type="video/mp4" />
     </video>
   )
 }

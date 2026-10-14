@@ -4,7 +4,7 @@ import type { SocialLink } from '../types/content'
 export const company = {
   name: 'MigBuild',
   /** Circular logo with transparent corners, generated from public/images/Logo.jpg */
-  logo: { src: '/images/logo-256.png', alt: 'MigBuild logotipi' },
+  logo: { src: '/images/logo-256.webp', alt: 'MigBuild logotipi' },
   description: "Turar-joy, tijorat va sanoat ob'ektlarini loyihalash va qurish.",
   region: "Farg'ona vodiysi",
   phone: {
