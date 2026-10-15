@@ -22,7 +22,7 @@ export const company = {
   /** Links with an empty href are hidden. */
   socials: [
     { label: 'Telegram', handle: '@MIGBUILD2', href: 'https://t.me/MIGBUILD2' },
-    { label: 'Instagram', handle: '@Mig_buid_fargona', href: 'https://www.instagram.com/Mig_buid_fargona/' },
+    { label: 'Instagram', handle: '@mig_build_fargona', href: 'https://www.instagram.com/mig_build_fargona/' },
   ] satisfies SocialLink[],
 }
 
