@@ -15,7 +15,7 @@ type Status = 'idle' | 'success' | 'error'
 const DEFAULTS: LeadInput = { name: '', phone: '+998 ', website: '' }
 
 const fieldClass =
-  'w-full rounded-xl border border-white/10 bg-ink-900 px-4 py-3 text-base text-white placeholder:text-white/35 transition focus:border-gold-400 focus:outline-none focus-visible:outline-none aria-invalid:border-red-500/70'
+  'w-full rounded-xl border border-white/10 bg-ink-900 px-4 py-3 text-base text-white placeholder:text-white/35 transition focus:border-brand-400 focus:outline-none focus-visible:outline-none aria-invalid:border-red-500/70'
 
 export default function LeadModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const titleId = useId()
@@ -59,7 +59,7 @@ export default function LeadModal({ open, onClose }: { open: boolean; onClose: (
 
           {status === 'success' ? (
             <div role="status" className="mt-6 flex flex-col items-center gap-4 py-6 text-center">
-              <CircleCheck className="size-14 text-gold-400" aria-hidden />
+              <CircleCheck className="size-14 text-brand-400" aria-hidden />
               <p className="text-lg font-semibold text-white/90">{lead.success}</p>
               <button
                 type="button"
@@ -122,7 +122,7 @@ export default function LeadModal({ open, onClose }: { open: boolean; onClose: (
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-gold flex min-h-13 w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-base font-bold text-ink-950 transition hover:brightness-110 disabled:opacity-70"
+                  className="bg-brand flex min-h-13 w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-base font-bold text-white transition hover:brightness-110 disabled:opacity-70"
                 >
                   {isSubmitting && <LoaderCircle className="size-5 animate-spin" aria-hidden />}
                   {isSubmitting ? lead.submitting : lead.submit}

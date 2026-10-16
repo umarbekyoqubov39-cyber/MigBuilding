@@ -106,7 +106,7 @@ export default function ReelsSection() {
               aria-label="Videoni ijro etish"
               className="absolute inset-0 z-10 grid place-items-center bg-black/30"
             >
-              <span className="bg-gold grid size-16 place-items-center rounded-full text-ink-950">
+              <span className="bg-brand grid size-16 place-items-center rounded-full text-white">
                 <Play className="ml-1 size-7" aria-hidden />
               </span>
             </button>

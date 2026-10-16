@@ -15,7 +15,7 @@ export interface Img {
   fit?: 'cover' | 'contain'
 }
 
-/** Heading text where `{ accent }` parts are rendered in the gold gradient. */
+/** Heading text where `{ accent }` parts are rendered in the brand gradient. */
 export type RichText = Array<string | { accent: string }>
 
 export interface VideoItem {

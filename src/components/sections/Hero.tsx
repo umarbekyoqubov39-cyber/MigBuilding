@@ -3,10 +3,10 @@ import { m } from 'motion/react'
 
 import { company } from '../../data/company'
 import { hero } from '../../data/content'
-import { GoldGlow } from '../ui/Decor'
+import { BrandGlow } from '../ui/Decor'
 import { ResponsiveImage } from '../ui/ResponsiveImage'
 
-const lineColors = ['text-gold', 'text-white', 'text-gold'] as const
+const lineColors = ['text-brand', 'text-white', 'text-brand'] as const
 
 export function Hero() {
   return (
@@ -23,8 +23,8 @@ export function Hero() {
         aria-hidden
         className="absolute inset-0 -z-10 bg-linear-to-b from-black/50 via-transparent via-40% to-ink-950"
       />
-      {/* Warm golden light rising from the bottom, behind the headline */}
-      <GoldGlow className="-bottom-[22rem] left-1/2 h-[36rem] w-[64rem] max-w-[200vw] -translate-x-1/2 opacity-90" />
+      {/* Warm blue brand light rising from the bottom, behind the headline */}
+      <BrandGlow className="-bottom-[22rem] left-1/2 h-[36rem] w-[64rem] max-w-[200vw] -translate-x-1/2 opacity-90" />
 
       <img
         src={company.logo.src}
@@ -32,10 +32,10 @@ export function Hero() {
         width={72}
         height={72}
         fetchPriority="high"
-        className="mt-5 size-16 rounded-full shadow-[0_0_30px_rgba(235,176,42,0.35)] ring-2 ring-gold-400/40 sm:mt-7 sm:size-20"
+        className="mt-5 size-16 rounded-full shadow-[0_0_30px_rgba(90,144,221,0.35)] ring-2 ring-brand-400/40 sm:mt-7 sm:size-20"
       />
 
-      <p className="mt-4 inline-flex max-w-full items-center gap-2 rounded-full border border-gold-400/35 bg-black/40 px-4 py-2.5 text-[0.6875rem] font-semibold tracking-wide text-gold-400 uppercase backdrop-blur-sm sm:mt-5 sm:px-6 sm:py-3 sm:text-sm">
+      <p className="mt-4 inline-flex max-w-full items-center gap-2 rounded-full border border-brand-400/35 bg-black/40 px-4 py-2.5 text-[0.6875rem] font-semibold tracking-wide text-brand-400 uppercase backdrop-blur-sm sm:mt-5 sm:px-6 sm:py-3 sm:text-sm">
         {hero.badge}
         <MapPin className="size-4 shrink-0" aria-hidden />
       </p>
@@ -59,7 +59,7 @@ export function Hero() {
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-          className="bg-gold mt-6 h-[3px] w-20 rounded-full sm:mt-8 sm:w-24"
+          className="bg-brand mt-6 h-[3px] w-20 rounded-full sm:mt-8 sm:w-24"
         />
         <m.p
           initial={{ opacity: 0 }}
@@ -74,7 +74,7 @@ export function Hero() {
       <a
         href="#video"
         aria-label="Keyingi bo'limga o'tish"
-        className="mb-4 hidden size-11 place-items-center rounded-full text-gold-400/80 transition hover:text-gold-300 motion-safe:animate-bounce sm:grid"
+        className="mb-4 hidden size-11 place-items-center rounded-full text-brand-400/80 transition hover:text-brand-300 motion-safe:animate-bounce sm:grid"
       >
         <ChevronDown className="size-6" aria-hidden />
       </a>

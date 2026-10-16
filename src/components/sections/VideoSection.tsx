@@ -6,7 +6,7 @@ import { comingSoon, featureVideo } from '../../data/content'
 import { useInView } from '../../hooks/useInView'
 import { MediaVideo } from '../ui/MediaVideo'
 import { ResponsiveImage } from '../ui/ResponsiveImage'
-import { GoldGlow } from '../ui/Decor'
+import { BrandGlow } from '../ui/Decor'
 import { Reveal } from '../ui/Reveal'
 import { Section } from '../ui/Section'
 
@@ -25,19 +25,19 @@ export function VideoSection() {
   return (
     <Section
       id="video"
-      decor={<GoldGlow className="top-1/2 left-1/2 h-[40rem] w-[70rem] max-w-[220vw] -translate-x-1/2 -translate-y-1/3" />}
+      decor={<BrandGlow className="top-1/2 left-1/2 h-[40rem] w-[70rem] max-w-[220vw] -translate-x-1/2 -translate-y-1/3" />}
     >
       <Reveal>
         <h2
           id="video-title"
-          className="text-gold mx-auto w-fit text-center text-[1.75rem] leading-tight font-extrabold tracking-[-0.04em] uppercase sm:text-4xl md:text-5xl"
+          className="text-brand mx-auto w-fit text-center text-[1.75rem] leading-tight font-extrabold tracking-[-0.04em] uppercase sm:text-4xl md:text-5xl"
         >
           {featureVideo.title}
         </h2>
       </Reveal>
 
       <Reveal delay={0.1} className="mx-auto mt-6 max-w-4xl md:mt-8">
-        <div className="rounded-[1.25rem] bg-ink-800 p-2 shadow-[0_0_45px_rgba(235,176,42,0.35)] ring-1 ring-gold-400/25 sm:rounded-[1.75rem] sm:p-4">
+        <div className="rounded-[1.25rem] bg-ink-800 p-2 shadow-[0_0_45px_rgba(90,144,221,0.35)] ring-1 ring-brand-400/25 sm:rounded-[1.75rem] sm:p-4">
           <div ref={frameRef} className="relative aspect-video overflow-hidden rounded-xl bg-black sm:rounded-2xl">
             <ResponsiveImage
               image={video.poster}
@@ -64,7 +64,7 @@ export function VideoSection() {
                 aria-label="Videoni ijro etish"
                 className="absolute inset-0 grid place-items-center bg-black/30"
               >
-                <span className="bg-gold grid size-16 place-items-center rounded-full text-ink-950">
+                <span className="bg-brand grid size-16 place-items-center rounded-full text-white">
                   <Play className="ml-1 size-7" aria-hidden />
                 </span>
               </button>
@@ -97,7 +97,7 @@ export function VideoSection() {
       </Reveal>
 
       <Reveal delay={0.15}>
-        <p className="text-gold mx-auto mt-6 w-fit text-center text-base font-semibold sm:text-xl md:mt-8 md:text-2xl">
+        <p className="text-brand mx-auto mt-6 w-fit text-center text-base font-semibold sm:text-xl md:mt-8 md:text-2xl">
           {featureVideo.caption}
         </p>
       </Reveal>

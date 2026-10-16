@@ -1,20 +1,20 @@
 import { MapPin, Phone } from 'lucide-react'
 
 import { company } from '../../data/company'
-import { GoldGlow, GoldHairline } from '../ui/Decor'
+import { BrandGlow, BrandHairline } from '../ui/Decor'
 import { SocialIcon } from '../ui/SocialIcon'
 
 const YEAR = new Date().getFullYear()
 
-const linkClass = 'flex min-h-11 items-center gap-3 transition hover:text-gold-400'
+const linkClass = 'flex min-h-11 items-center gap-3 transition hover:text-brand-400'
 
 export function Footer() {
   const socials = company.socials.filter((s) => s.href)
 
   return (
     <footer className="relative isolate overflow-hidden bg-ink-950 px-4 pt-14 pb-28 sm:px-6 md:pb-16">
-      <GoldHairline className="max-w-none" />
-      <GoldGlow className="-top-48 -left-40 size-[30rem]" />
+      <BrandHairline className="max-w-none" />
+      <BrandGlow className="-top-48 -left-40 size-[30rem]" />
       <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
         <div>
           <p className="flex items-center gap-3 text-2xl font-extrabold tracking-tight">
@@ -24,7 +24,7 @@ export function Footer() {
               width={56}
               height={56}
               loading="lazy"
-              className="size-14 shrink-0 rounded-full ring-2 ring-gold-400/40"
+              className="size-14 shrink-0 rounded-full ring-2 ring-brand-400/40"
             />
             {company.name}
           </p>
@@ -34,11 +34,11 @@ export function Footer() {
         <address className="space-y-1 text-sm text-white/70 not-italic">
           <p className="mb-2 text-xs font-bold tracking-[0.2em] text-white/40 uppercase">Aloqa</p>
           <a href={company.phone.href} className={linkClass}>
-            <Phone className="size-4 shrink-0 text-gold-400" aria-hidden />
+            <Phone className="size-4 shrink-0 text-brand-400" aria-hidden />
             {company.phone.display}
           </a>
           <a href={company.location.mapUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
-            <MapPin className="size-4 shrink-0 text-gold-400" aria-hidden />
+            <MapPin className="size-4 shrink-0 text-brand-400" aria-hidden />
             {company.location.label}
             <span className="sr-only"> (xaritada ochiladi)</span>
           </a>
@@ -51,7 +51,7 @@ export function Footer() {
               {socials.map((s) => (
                 <li key={s.label}>
                   <a href={s.href} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                    <SocialIcon network={s.label} className="size-4 shrink-0 text-gold-400" />
+                    <SocialIcon network={s.label} className="size-4 shrink-0 text-brand-400" />
                     <span>
                       {s.label} <span className="text-white/45">{s.handle}</span>
                     </span>

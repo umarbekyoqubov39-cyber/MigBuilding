@@ -4,7 +4,7 @@ import { ChevronDown } from 'lucide-react'
 import { gallery } from '../../data/content'
 import { cx } from '../../lib/cx'
 import { ResponsiveImage } from '../ui/ResponsiveImage'
-import { GoldGlow } from '../ui/Decor'
+import { BrandGlow } from '../ui/Decor'
 import { Reveal } from '../ui/Reveal'
 import { Section, SectionTitle } from '../ui/Section'
 
@@ -26,7 +26,7 @@ export function GallerySection() {
       tone="dark"
       className="pt-16 md:pt-24"
       divider={false}
-      decor={<GoldGlow className="-bottom-40 -left-56 size-[38rem]" />}
+      decor={<BrandGlow className="-bottom-40 -left-56 size-[38rem]" />}
     >
       <SectionTitle id="loyihalar" text={gallery.title} />
 
@@ -49,7 +49,7 @@ export function GallerySection() {
                 onClick={() => setOpenIndex(i)}
                 aria-label={`Rasmni kattalashtirish: ${image.alt}`}
                 className={cx(
-                  'group block aspect-square w-full overflow-hidden rounded-lg ring-1 ring-white/5 transition-shadow duration-300 hover:ring-2 hover:ring-gold-400/60 sm:rounded-xl',
+                  'group block aspect-square w-full overflow-hidden rounded-lg ring-1 ring-white/5 transition-shadow duration-300 hover:ring-2 hover:ring-brand-400/60 sm:rounded-xl',
                   // Plans have a light background of their own, so a white tile frames them cleanly.
                   image.fit === 'contain' ? 'bg-white p-1.5' : 'bg-ink-850',
                 )}
@@ -75,7 +75,7 @@ export function GallerySection() {
             onClick={() => setExpanded((e) => !e)}
             aria-expanded={expanded}
             aria-controls="gallery-grid"
-            className="inline-flex min-h-11 items-center gap-1.5 px-4 text-base font-bold text-gold-400 transition hover:text-gold-300 md:text-xl"
+            className="inline-flex min-h-11 items-center gap-1.5 px-4 text-base font-bold text-brand-400 transition hover:text-brand-300 md:text-xl"
           >
             {expanded ? gallery.showLess : gallery.showAll}
             <ChevronDown className={cx('size-5 transition', expanded && 'rotate-180')} aria-hidden />

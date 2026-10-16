@@ -11,7 +11,7 @@ export function FloatingCta() {
       <button
         type="button"
         onClick={openLead}
-        className="bg-gold cta-glow pointer-events-auto flex min-h-14 w-full items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-base font-extrabold text-ink-950 transition hover:brightness-110 active:scale-[0.98] sm:min-h-12 sm:w-auto sm:px-6 sm:py-3 sm:font-bold"
+        className="bg-brand cta-glow pointer-events-auto flex min-h-14 w-full items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-base font-extrabold text-white transition hover:brightness-110 active:scale-[0.98] sm:min-h-12 sm:w-auto sm:px-6 sm:py-3 sm:font-bold"
       >
         <PhoneCall className="size-5" aria-hidden />
         {lead.floatingCta}

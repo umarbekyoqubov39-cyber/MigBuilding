@@ -18,14 +18,14 @@ export function LocationMap({ className }: { className?: string }) {
       />
       <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 p-4">
         <p className="flex items-center gap-2 text-sm font-semibold text-white/85">
-          <MapPin className="size-4 shrink-0 text-gold-400" aria-hidden />
+          <MapPin className="size-4 shrink-0 text-brand-400" aria-hidden />
           {location.label}
         </p>
         <a
           href={location.mapUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-gold-400/40 px-4 text-sm font-semibold text-gold-400 transition hover:bg-gold-400/10"
+          className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-brand-400/40 px-4 text-sm font-semibold text-brand-400 transition hover:bg-brand-400/10"
         >
           Xaritada ochish
           <ExternalLink className="size-4" aria-hidden />

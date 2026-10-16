@@ -3,20 +3,30 @@
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
-  --color-ink-950: #0d0d0d;
-  --color-ink-900: #111111;
-  --color-ink-850: #161616;
-  --color-ink-800: #1b1b1b;
+  /* Near-black backgrounds with a faint tint of the logo navy */
+  --color-ink-950: #070b12;
+  --color-ink-900: #0b111b;
+  --color-ink-850: #111a28;
+  --color-ink-800: #162134;
 
-  --color-gold-300: #f6cd55;
-  --color-gold-400: #ebb02a;
-  --color-gold-500: #db991d;
-  --color-gold-600: #c98219;
+  /*
+   * Brand blue, taken from the MigBuild logo (#0D325E, hue 213°). The lighter steps keep
+   * text and accents readable on the dark background; 700 is the logo colour itself.
+   */
+  --color-brand-300: #a8c6f2;
+  --color-brand-400: #5a90dd;
+  --color-brand-500: #2f6bc0;
+  --color-brand-600: #1d4e94;
+  --color-brand-700: #0d325e;
+
+  /* Steel grey from the logo's tower */
+  --color-steel-400: #8e9097;
+  --color-steel-500: #5a5b60;
 }
 
-/* Gold gradient text, used for accented words in headings */
-@utility text-gold {
-  background-image: linear-gradient(100deg, var(--color-gold-300), var(--color-gold-500));
+/* Brand gradient text, used for accented words in headings */
+@utility text-brand {
+  background-image: linear-gradient(100deg, var(--color-brand-300), var(--color-brand-400));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -24,46 +34,46 @@
   box-decoration-break: clone;
 }
 
-/* Gold gradient fill, used for primary buttons */
-@utility bg-gold {
-  background-image: linear-gradient(100deg, var(--color-gold-400), var(--color-gold-600));
+/* Brand gradient fill for primary buttons; dark enough for white text */
+@utility bg-brand {
+  background-image: linear-gradient(100deg, var(--color-brand-500), var(--color-brand-700));
 }
 
 /*
- * Gold accents on the black page. Only the brand gold is used, at low opacity, and only with
+ * Brand accents on the dark page. Only the logo blue is used, at low opacity, and only with
  * plain gradients (no blur filters), so they cost nothing on slow phones.
  */
 
-/* Soft golden light pool; size and position it with utilities */
-@utility gold-glow {
-  background: radial-gradient(closest-side, rgb(235 176 42 / 0.13), rgb(235 176 42 / 0.04) 55%, transparent);
+/* Soft blue brand light pool; size and position it with utilities */
+@utility brand-glow {
+  background: radial-gradient(closest-side, rgb(90 144 221 / 0.13), rgb(90 144 221 / 0.04) 55%, transparent);
 }
 
 /* Faint construction-drawing grid that fades out towards the edges */
 @utility blueprint {
   background-image:
-    linear-gradient(rgb(235 176 42 / 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(235 176 42 / 0.07) 1px, transparent 1px);
+    linear-gradient(rgb(90 144 221 / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(90 144 221 / 0.07) 1px, transparent 1px);
   background-size: 44px 44px;
   background-position: center;
   -webkit-mask-image: radial-gradient(ellipse 60% 55% at center, black 15%, transparent 75%);
   mask-image: radial-gradient(ellipse 60% 55% at center, black 15%, transparent 75%);
 }
 
-/* 1px gold line that fades out at both ends, used as a section divider */
-@utility gold-hairline {
+/* 1px brand line that fades out at both ends, used as a section divider */
+@utility brand-hairline {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgb(235 176 42 / 0.45), transparent);
+  background: linear-gradient(90deg, transparent, rgb(90 144 221 / 0.45), transparent);
 }
 
-/* Glowing CTA: a pulsing golden halo plus a light sweep across the button */
+/* Glowing CTA: a pulsing blue halo plus a light sweep across the button */
 @utility cta-glow {
   position: relative;
   overflow: hidden;
   isolation: isolate;
   box-shadow:
-    0 0 14px 2px rgb(235 176 42 / 0.5),
-    0 0 36px 8px rgb(235 176 42 / 0.25);
+    0 0 14px 2px rgb(90 144 221 / 0.5),
+    0 0 36px 8px rgb(90 144 221 / 0.25);
 
   &::after {
     content: '';
@@ -87,13 +97,13 @@
   0%,
   100% {
     box-shadow:
-      0 0 14px 2px rgb(235 176 42 / 0.5),
-      0 0 36px 8px rgb(235 176 42 / 0.25);
+      0 0 14px 2px rgb(90 144 221 / 0.5),
+      0 0 36px 8px rgb(90 144 221 / 0.25);
   }
   50% {
     box-shadow:
-      0 0 24px 6px rgb(246 205 85 / 0.75),
-      0 0 64px 18px rgb(235 176 42 / 0.4);
+      0 0 24px 6px rgb(168 198 242 / 0.75),
+      0 0 64px 18px rgb(90 144 221 / 0.4);
   }
 }
 
@@ -136,7 +146,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-gold-400);
+    outline: 2px solid var(--color-brand-400);
     outline-offset: 3px;
   }
 

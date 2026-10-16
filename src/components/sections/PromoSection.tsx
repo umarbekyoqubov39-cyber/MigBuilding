@@ -1,6 +1,6 @@
 import { promo } from '../../data/content'
 import { ResponsiveImage } from '../ui/ResponsiveImage'
-import { GoldGlow, GoldHairline } from '../ui/Decor'
+import { BrandGlow, BrandHairline } from '../ui/Decor'
 import { Reveal } from '../ui/Reveal'
 import { Rich } from '../ui/Rich'
 
@@ -10,8 +10,8 @@ export function PromoSection() {
       aria-labelledby="promo-title"
       className="relative isolate overflow-hidden bg-ink-900 px-4 py-16 text-center sm:px-6 md:py-24"
     >
-      <GoldHairline />
-      <GoldGlow className="top-8 left-1/2 h-[34rem] w-[60rem] max-w-[200vw] -translate-x-1/2" />
+      <BrandHairline />
+      <BrandGlow className="top-8 left-1/2 h-[34rem] w-[60rem] max-w-[200vw] -translate-x-1/2" />
       <Reveal>
         <div className="mx-auto aspect-[16/10] w-full max-w-[40rem] [mask-composite:intersect] [mask-image:linear-gradient(to_right,transparent,black_18%,black_82%,transparent),linear-gradient(to_bottom,black_55%,transparent)]">
           <ResponsiveImage
@@ -25,7 +25,7 @@ export function PromoSection() {
       <Reveal delay={0.1}>
         <p
           aria-hidden
-          className="mx-auto -mt-4 w-fit bg-linear-to-b from-gold-300 to-[#8a6a2c] bg-clip-text text-4xl font-black tracking-tight text-transparent sm:-mt-6 md:text-6xl"
+          className="mx-auto -mt-4 w-fit bg-linear-to-b from-brand-300 to-brand-600 bg-clip-text text-4xl font-black tracking-tight text-transparent sm:-mt-6 md:text-6xl"
         >
           {promo.highlight}
         </p>

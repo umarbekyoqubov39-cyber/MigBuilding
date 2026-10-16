@@ -1,5 +1,5 @@
 import { problems } from '../../data/content'
-import { Blueprint, GoldGlow } from '../ui/Decor'
+import { Blueprint, BrandGlow } from '../ui/Decor'
 import { Reveal } from '../ui/Reveal'
 import { Section, SectionTitle } from '../ui/Section'
 
@@ -11,7 +11,7 @@ export function ProblemSection() {
       decor={
         <>
           <Blueprint />
-          <GoldGlow className="-top-32 -right-48 size-[34rem]" />
+          <BrandGlow className="-top-32 -right-48 size-[34rem]" />
         </>
       }
     >
@@ -31,7 +31,7 @@ export function ProblemSection() {
       </ul>
 
       <Reveal>
-        <p className="text-gold mx-auto mt-8 w-fit text-center text-base font-semibold sm:text-xl md:mt-12 md:text-2xl">
+        <p className="text-brand mx-auto mt-8 w-fit text-center text-base font-semibold sm:text-xl md:mt-12 md:text-2xl">
           {problems.conclusion}
         </p>
       </Reveal>
